@@ -1,0 +1,14 @@
+Feature: Bookcart Application test
+
+Scenario:
+Login Should br success
+
+
+Given user navigate to the Bookcart Aplication 
+And user enter on the login button
+And user enter the username as ortoni
+And user enter the password as pass1234
+When user enter the login button
+Then login should be Success
+
+

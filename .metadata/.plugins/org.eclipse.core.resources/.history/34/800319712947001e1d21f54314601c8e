@@ -1,0 +1,27 @@
+package Extend_report.Extend_Report;
+
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.ExtentSparkReporterConfig;
+
+public class chapter10 {
+
+	public static void main(String[] args) throws Exception {
+		
+
+		ExtentReports extent = new ExtentReports();
+		File file=new File("report.html");
+		ExtentSparkReporter spark = new ExtentSparkReporter(file);
+		extent.attachReporter(spark);
+		
+		
+		extent.flush();
+		Desktop.getDesktop().browse(new File("report.html").toURI());
+
+	}
+
+}

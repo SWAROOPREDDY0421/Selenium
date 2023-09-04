@@ -1,0 +1,123 @@
+package Extent_Pratise;
+
+import java.awt.Desktop;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.CodeLanguage;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
+
+public class pr4 {
+	
+	public static void main(String[] args) throws Exception {
+		
+		ExtentReports extent=new ExtentReports();
+		File file=new File("reports.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		extent.attachReporter(spark);
+		
+		//TEXT IN BOLD AND ITALIC Style
+		
+		extent.createTest("TEST 1","Text Based Test")
+		.log(Status.PASS, "<b>PASS</b>")
+		.log(Status.SKIP, "<b><i>SKIP</i></b>");
+		
+		extent.createTest("TEST 2","Text Based Test")
+		.log(Status.WARNING, "<b>WARNING</b>")
+		.log(Status.SKIP, "<b><i>SKIP</i></b>")
+		.log(Status.INFO, "<i>SKIP</i>")
+		.log(Status.FAIL, "<b>FAIL</b>")
+		.log(Status.PASS, "<b><i>PASS</i></b>");
+		
+		//Reading in Json AND Xml DATA
+		
+		String xmlData = "<menu id=\"file\" value=\"File\">\r\n"
+				+ "  <popup>\r\n"
+				+ "    <menuitem value=\"New\" onclick=\"CreateNewDoc()\" />\r\n"
+				+ "    <menuitem value=\"Open\" onclick=\"OpenDoc()\" />\r\n"
+				+ "    <menuitem value=\"Close\" onclick=\"CloseDoc()\" />\r\n"
+				+ "  </popup>\r\n"
+				+ "</menu>";
+		
+		String jsonData="{\"menu\": {\r\n"
+				+ "  \"id\": \"file\",\r\n"
+				+ "  \"value\": \"File\",\r\n"
+				+ "  \"popup\": {\r\n"
+				+ "    \"menuitem\": [\r\n"
+				+ "      {\"value\": \"New\", \"onclick\": \"CreateNewDoc()\"},\r\n"
+				+ "      {\"value\": \"Open\", \"onclick\": \"OpenDoc()\"},\r\n"
+				+ "      {\"value\": \"Close\", \"onclick\": \"CloseDoc()\"}\r\n"
+				+ "    ]\r\n"
+				+ "  }\r\n"
+				+ "}}";
+		
+		extent.createTest("Test 3","Xml Based Test")
+		.log(Status.PASS, xmlData)
+		.info(MarkupHelper.createCodeBlock(xmlData, CodeLanguage.XML));
+		
+		
+		extent.createTest("Test 4","Json Based Test")
+		.log(Status.WARNING, jsonData)
+		.log(Status.PASS, MarkupHelper.createCodeBlock(jsonData, CodeLanguage.JSON));
+		
+		//Collections with List,Map and Set
+		
+		List<String> Listdata=new ArrayList<>();
+		Listdata.add("Raju");
+		Listdata.add("Ravi");
+		Listdata.add("Mahi");
+		
+		Map<Integer,String> mapdata=new HashMap<>();
+		mapdata.put(101, "Raju");
+		mapdata.put(102, "Ravi");
+		mapdata.put(103, "Mahi");
+		mapdata.put(104, "Teja");
+		
+		Set<Integer> setdata=mapdata.keySet();
+		
+		extent.createTest("Test 4","List Data Based Test")
+		.info(MarkupHelper.createOrderedList(Listdata))
+		.pass(MarkupHelper.createUnorderedList(Listdata));
+		
+		extent.createTest("Test 5","Map Data based Test")
+		.info(MarkupHelper.createOrderedList(mapdata))
+		.skip(MarkupHelper.createUnorderedList(mapdata));
+		
+		extent.createTest("Test 6","Set Data based Test")
+		.info(MarkupHelper.createOrderedList(setdata))
+		.pass(MarkupHelper.createUnorderedList(setdata));
+		
+		//Highlight Log Test
+		extent.createTest("Test 7","Highlight the Text")
+		.pass(MarkupHelper.createLabel("This not HIGHLIGHTED", ExtentColor.GREEN))
+		.info(MarkupHelper.createLabel("This is HiGHLIGHT Message", ExtentColor.RED));
+		
+		//Exception 
+		try {
+			int i=5/0;
+		}catch(Exception e) {
+			
+			extent.createTest("Test 8","This is Exception")
+			.info(e);
+			
+		}
+		
+		Throwable t=new RuntimeException("this is customize Exception ");
+		extent.createTest("Test 9")
+		.info(t);
+		
+		extent.flush();
+		Desktop.getDesktop().browse(new File("reports.html").toURI());
+		
+	}
+
+}

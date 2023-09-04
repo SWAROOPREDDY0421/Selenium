@@ -1,0 +1,34 @@
+package Extent_Pratise;
+
+import java.awt.Desktop;
+import java.io.File;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
+public class pr4 {
+	
+	public static void main(String[] args) throws Exception {
+		
+		ExtentReports extent=new ExtentReports();
+		File file=new File("reports.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		extent.attachReporter(spark);
+		
+		extent.createTest("TEST 1","Text Based Test")
+		.log(Status.PASS, "<b>PASS</b>")
+		.log(Status.SKIP, "<b><i>SKIP</i></b>");
+		
+		extent.createTest("TEST 2","Text Based Test")
+		.log(Status.WARNING, "<b>WARNING</b>")
+		.log(Status.SKIP, "<b><i>SKIP</i></b>")
+		.log(Status.INFO, "<i>SKIP</i>")
+		.log(Status.FAIL, "<b>FAIL</b>")
+		.log(Status.PASS, "<b><i>PASS</i></b>");
+
+		extent.flush();
+		Desktop.getDesktop().browse(new File("reports.html").toURI());
+		
+	}
+
+}

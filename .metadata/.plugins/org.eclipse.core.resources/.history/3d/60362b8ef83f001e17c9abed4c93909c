@@ -1,0 +1,39 @@
+
+package com.hyr.Test;
+
+import org.testng.annotations.Test;
+
+public class Testdependency {
+
+	static String trackingnumber=null;
+
+	@Test
+	public void CreateShip() { 
+		System.out.println("CreateShipment");
+		trackingnumber="AC15462IN";
+
+	}
+
+	@Test
+	public void TrackShip() { 
+		if(trackingnumber!=null) {
+			System.out.println("TrackShipment");
+		}
+		else 
+			System.out.println("Invalid trackingnumber");
+	}
+	
+
+	@Test
+	public void CancelShip() { 
+		if(trackingnumber!=null) {
+			System.out.println("CancelShipment");
+		}
+		else 
+			System.out.println("Invalid trackingnumber");
+		
+	}
+
+	}
+
+}

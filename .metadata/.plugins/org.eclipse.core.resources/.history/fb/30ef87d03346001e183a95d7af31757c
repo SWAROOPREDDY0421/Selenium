@@ -1,0 +1,16 @@
+package Runner;
+
+import io.cucumber.testng.CucumberOptions;
+
+@CucumberOptions(
+		
+		features= {"src/test/java/Features/loguin.feature"},
+		dryRun=true
+		
+		
+		)
+
+public class lioginRun {
+
+	
+}

@@ -1,0 +1,42 @@
+package Steps;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.cucumber.java.en.*;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class login {
+
+	WebDriver driver;
+	
+	@Given("Open the Application on the browser")
+	public void open_the_application_on_the_browser() {
+		driver=new ChromeDriver();
+		
+	    driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+	    
+	}
+
+	@And("User enter the username as {string}")
+	public void user_enter_the_username_as(String string) {
+	   driver.findElement(By.name("username")).sendKeys("Admin");
+	}
+
+	@And("User enter the password as {string}")
+	public void user_enter_the_password_as(String string) {
+	    driver.findElement(By.name("password")).sendKeys("admin123");
+	}
+
+	@When("user click on login button")
+	public void user_click_on_login_button() {
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	}
+
+	@Then("user shoulb be login success")
+	public void user_shoulb_be_login_success() {
+	   driver.findElement(By.className("oxd-topbar-header-breadcrumb")).getText();
+	}
+	
+}

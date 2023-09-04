@@ -1,0 +1,11 @@
+Feature: Bookcart Apllication Tests
+  
+  
+  Scenario: Login should be success
+  
+    Given user navigate to the bookcart Apllication
+    And user clicks on thr login button
+    And user enter the username as "Admin"
+    And user enter the username as "admin123"
+   	When user click on login button
+   	Then login should be success

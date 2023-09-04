@@ -1,0 +1,69 @@
+package Extent_Pratise;
+
+import java.awt.Desktop;
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class pr5 {
+
+	static WebDriver driver;
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		
+		ExtentReports extent=new ExtentReports();
+		File file=new File("reports.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		extent.attachReporter(spark);
+		
+		WebDriverManager.chromedriver().setup();
+		driver.get("https://www.facebook.com/login/");
+		driver.findElement(By.id("email")).sendKeys("Swaroop");
+		Thread.sleep(2000);
+		driver.findElement(By.id("pass")).sendKeys("swaroop123");
+		Thread.sleep(2000);
+		driver.findElement(By.id("loginbutton")).click();
+		Thread.sleep(2000);
+		
+		
+		extent.createTest("Test 1","Screenshot base64")
+		.info("This is just Info")
+		.addScreenCaptureFromBase64String(filename);
+		
+		
+		extent.flush();
+		Desktop.getDesktop().browse(new File("reports.html").toURI());
+		
+	}
+	
+	public  static  String capturescreenshot() {
+		TakesScreenshot takescreenshot=(TakesScreenshot) driver;
+		String base=takescreenshot.getScreenshotAs(OutputType.BASE64);
+		System.out.println("Screenshot Saved Successfully");
+		return des.getAbsolutePath();
+	}
+		public  static  String capturescreenshot(String filename) {
+		// TODO Auto-generated method stub
+		TakesScreenshot takescreenshot=(TakesScreenshot) driver;
+		File src=takescreenshot.getScreenshotAs(OutputType.FILE);
+		File des=new File("./Screen/img1.jpg" +filename );
+		try {
+			FileUtils.copyFile(src, des);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("Screenshot Saved Successfully");
+		return des.getAbsolutePath();
+	}
+
+}

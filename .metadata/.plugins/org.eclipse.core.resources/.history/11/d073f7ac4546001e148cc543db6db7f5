@@ -1,0 +1,16 @@
+package TestRunner;
+
+import io.cucumber.testng.CucumberOptions;
+
+@CucumberOptions(
+		
+		features= {"src/test/java/Features/login.feature"},
+		dryRun=true
+		
+		
+		
+		)
+
+public class testrun {
+
+}

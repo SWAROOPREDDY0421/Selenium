@@ -1,0 +1,19 @@
+package TestRunner;
+
+import io.cucumber.core.snippets.SnippetType;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
+
+@CucumberOptions(
+		
+		features = {"src/tst/java/features/login.feature"} ,
+		dryRun = true,
+		snippets = io.cucumber.testng.CucumberOptions.SnippetType.CAMELCASE,
+		monochrome=true,
+		glue="StepsDefinations"
+		
+		
+		)
+public class Runner extends AbstractTestNGCucumberTests{
+
+}

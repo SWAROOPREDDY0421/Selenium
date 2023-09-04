@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	 <groups>
+		  <define name="dailybuild">
+		  <include name="retesting"/>
+		  <include name="functional"/>
+		  <include name="alpha"/>
+		  </define>
+		  <define name="Weeklybuild">
+			  <include name="retesting"/>
+		  <include name="functional"/>
+		  <include name="alpha"/>
+		  <include name="functional"/>
+		  <include name="smoke"/>
+		  </define>
+		  <run>
+			  <include name="resting"/>
+			 
+		  </run>
+		  </groups>
+  <test thread-count="5" name="Test1">
+	 
+    <classes>
+      <class name="com.demo.hyr.newtest"/>
+       <class name="com.demo.hyr.newtest1"/>
+    </classes>
+  </test> <!-- Test -->
+   <test thread-count="5" name="Test2">
+	  <groups>
+		  <run>
+			  <include name="smoke"/>
+		  </run>
+	  </groups>
+    <classes>
+      <class name="com.demo.hyr.newtest"/>
+       <class name="com.demo.hyr.newtest1"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

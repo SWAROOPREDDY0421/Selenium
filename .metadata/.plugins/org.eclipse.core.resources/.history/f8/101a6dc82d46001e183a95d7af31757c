@@ -1,0 +1,9 @@
+Feature: Browser the OrangeHRM application
+  I want to use this template for my feature file
+
+  Scenario: Login into OrangeHRM Application
+    Given Open the Application on the browser
+    And User enter the username
+    And User enter the password
+    When user click on login button
+    Then user shoulb n=be logi success

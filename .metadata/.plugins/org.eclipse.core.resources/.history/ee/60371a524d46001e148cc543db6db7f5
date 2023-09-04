@@ -1,0 +1,18 @@
+package TestRunner;
+
+import cucumber.api.CucumberOptions;
+import cucumber.api.testng.AbstractTestNGCucumberTests;
+
+@CucumberOptions(
+		
+//		features= {"C:\\Users\\SWAROOP REDDY\\eclipse-workspace\\Selenium_Practise\\cucumber\\src\\test\\java\\Features\\login.feature"},
+		features= {"src/test/java/Features/login.feature"},
+		dryRun=true,
+		monochrome=true
+		
+		
+		)
+
+public class testrun extends AbstractTestNGCucumberTests{
+
+}

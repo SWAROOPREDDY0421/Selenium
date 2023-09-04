@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-08-28T10:07:33 IST" name="Default suite" finished-at="2023-08-28T10:10:03 IST" duration-ms="149899">
+    <groups>
+    </groups>
+    <test started-at="2023-08-28T10:07:33 IST" name="Default test" finished-at="2023-08-28T10:10:03 IST" duration-ms="149899">
+      <class name="com.hyr.Test.TestGoogle">
+        <test-method signature="Facebook()[pri:0, instance:com.hyr.Test.TestGoogle@13e344d]" started-at="2023-08-28T10:07:34 IST" name="Facebook" finished-at="2023-08-28T10:10:03 IST" duration-ms="149504" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Facebook -->
+      </class> <!-- com.hyr.Test.TestGoogle -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

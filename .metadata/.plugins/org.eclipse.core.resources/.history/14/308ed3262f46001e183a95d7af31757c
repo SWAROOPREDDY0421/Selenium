@@ -1,0 +1,30 @@
+package Steps;
+
+import io.cucumber.java.en.*;
+
+public class login {
+	
+	WebDriver driver;
+	
+	@Given("User enter the username as {string}")
+	public void user_enter_the_username_as(String string) {
+	  
+	}
+
+	@Given("User enter the password as {string}")
+	public void user_enter_the_password_as(String string) {
+	   
+	}
+
+	@When("user click on login button")
+	public void user_click_on_login_button() {
+	   
+	}
+
+	@Then("user shoulb be login success")
+	public void user_shoulb_be_login_success() {
+	   
+	}
+
+
+}

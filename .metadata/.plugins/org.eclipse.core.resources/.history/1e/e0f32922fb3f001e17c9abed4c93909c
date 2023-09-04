@@ -1,0 +1,42 @@
+
+package com.hyr.Test;
+
+import org.openqa.selenium.devtools.v113.runtime.model.ExceptionThrown;
+import org.testng.annotations.Test;
+
+public class Testdependency {
+
+	static String trackingnumber=null;
+
+	@Test()
+	public void CreateShip() { 
+	System.out.println(5/0);
+		System.out.println("CreateShipment");
+		trackingnumber="AC15462IN";
+
+	}
+
+	@Test( dependsOnMethods = {"CreateShip"} ,alwaysRun = true)
+	public void TrackShip() { 
+		if(trackingnumber!=null) {
+			System.out.println("TrackShipment");
+		}
+		else 
+			
+			System.out.println("Invalid trackingnumber");
+	}
+	
+
+	@Test(dependsOnMethods = {"TrackShip","CreateShip"})
+	public void CancelShip() { 
+		if(trackingnumber!=null) {
+			System.out.println("CancelShipment");
+		}
+		else 
+			System.out.println("Invalid trackingnumber");
+		
+	}
+
+	}
+
+

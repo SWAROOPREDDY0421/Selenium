@@ -1,0 +1,15 @@
+package TestRunner;
+
+import io.cucumber.testng.CucumberOptions;
+
+@CucumberOptions(
+		
+		features= {"src/test/java/Features/login.feature"}
+		
+		
+		
+		)
+
+public class testrun {
+
+}
