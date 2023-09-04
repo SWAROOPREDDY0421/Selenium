@@ -1,0 +1,48 @@
+package SDET;
+
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Windowhandles {
+
+	
+	public static void main(String[] args) throws Exception {
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		
+		driver.get("https://www.naukri.com/");
+		driver.manage().window().maximize();
+		Thread.sleep(2000);
+		String parentwindow=driver.getWindowHandle();
+		System.out.println("The Parent window Handle is:"+parentwindow);
+		
+		driver.findElement(By.xpath("//span[@title='MNC']")).click();
+		Set<String> childwindow=driver.getWindowHandles();
+		for (String CDHandle : childwindow) {
+			if(!CDHandle.equals(parentwindow)) {
+				driver.switchTo().window(CDHandle);
+				driver.manage().window().maximize();
+				driver.findElement(By.id("Foreign MNC"));
+				Thread.sleep(2000);
+				driver.close();
+			}
+			
+			
+			
+			System.out.println("The WINDOW HANDLES ARE: " +CDHandle);
+			
+		}
+		
+		driver.switchTo().window(parentwindow);
+		Thread.sleep(2000);
+		driver.findElement(By.id("login_Layer")).click();
+		
+		
+		
+	}
+}
